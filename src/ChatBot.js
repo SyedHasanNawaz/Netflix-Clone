@@ -28,7 +28,7 @@ const ChatBot = () => {
         {
           headers: {
             Authorization:
-              "Bearer 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",
+              "Bearer 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",
             "Content-Type": "application/json",
             "HTTP-Referer": "http://localhost:3000",
             "X-Title": "Chatbot",
