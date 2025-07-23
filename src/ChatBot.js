@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./ChatBot.css";
 
-const CHATBOT_KEY = process.env.REACT_APP_CHATBOT_KEY;
-
 const ChatBot = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
