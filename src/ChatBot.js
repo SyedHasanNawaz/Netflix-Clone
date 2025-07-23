@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./ChatBot.css";
 
+const CHATBOT_KEY = process.env.REACT_APP_CHATBOT_KEY;
+
 const ChatBot = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
@@ -27,11 +29,8 @@ const ChatBot = () => {
         },
         {
           headers: {
-            Authorization:
-              "Bearer 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",
+            Authorization: `Bearer ${CHATBOT_KEY}`,
             "Content-Type": "application/json",
-            "HTTP-Referer": "http://localhost:3000",
-            "X-Title": "Chatbot",
           },
         }
       );
@@ -49,12 +48,10 @@ const ChatBot = () => {
 
   return (
     <>
-      {/* Floating Chat Button */}
       <button className="chat-toggle-button" onClick={toggleChat}>
         💬
       </button>
 
-      {/* Chat Box */}
       {isOpen && (
         <div className="chat-container">
           <div className="chat-header">
