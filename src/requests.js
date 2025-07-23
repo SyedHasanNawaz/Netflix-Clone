@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const BASE_URL = "https://api.themoviedb.org/3";
-const TMDB_KEY = process.env.REACT_APP_TMDB_KEY;
 
 const requests = {
   fetchTrending: `/trending/all/week?api_key=${TMDB_KEY}&language=en-US`,
