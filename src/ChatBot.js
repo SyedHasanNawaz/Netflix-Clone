@@ -21,19 +21,10 @@ const ChatBot = () => {
     setInput("");
 
     try {
-      const res = await axios.post(
-        "https://openrouter.ai/api/v1/chat/completions",
-        {
-          model: "meta-llama/llama-3.3-70b-instruct:free",
-          messages: updatedMessages,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${CHATBOT_KEY}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const res = await axios.post("/.netlify/functions/api/chatbot", {
+        model: "meta-llama/llama-3.3-70b-instruct:free",
+        messages: updatedMessages,
+      });
 
       const reply = res.data.choices[0].message.content;
       setMessages([...updatedMessages, { role: "assistant", content: reply }]);
