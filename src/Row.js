@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "./axios";
 import "./Row.css";
 import YouTube from "react-youtube";
-import movieTrailer from "movie-trailer";
 import { fetchTrailer } from "./requests";
 
 const base_url = "https://image.tmdb.org/t/p/original/";
@@ -31,7 +30,7 @@ function Rows({ title, fetchUrl, isLargeRow }) {
     if (trailerUrl) {
       setTrailerUrl("");
     } else {
-      const isTv = title === "Netflix Originals"; // adjust logic as needed
+      const isTv = title === "Netflix Originals";
       const key = await fetchTrailer(movie.id, isTv);
       setTrailerUrl(key);
     }
