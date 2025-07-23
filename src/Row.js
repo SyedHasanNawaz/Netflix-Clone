@@ -11,12 +11,8 @@ function Rows({ title, fetchUrl, isLargeRow }) {
 
   useEffect(() => {
     async function fetchData() {
-      const endpoint = fetchUrl.replace(
-        "https://api.themoviedb.org/3",
-        "/.netlify/functions/api"
-      );
-      const request = await axios.get(endpoint);
-
+      //const endpoint = `/.netlify/functions/api${fetchUrl}`;
+      const request = await axios.get(fetchUrl);
       setMovies(request.data.results);
     }
     fetchData();

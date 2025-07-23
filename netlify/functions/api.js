@@ -4,8 +4,8 @@ exports.handler = async function (event) {
   const { OPENAI_KEY, TMDB_KEY } = process.env;
   const path = event.path.replace("/.netlify/functions/api", "");
 
+  // Chatbot POST request
   if (event.httpMethod === "POST" && path === "/chatbot") {
-    // Chatbot proxy to OpenAI
     try {
       const body = JSON.parse(event.body);
       const response = await axios.post(
@@ -30,10 +30,17 @@ exports.handler = async function (event) {
     }
   }
 
-  // TMDB proxy for GET requests
+  // TMDB GET request
   if (event.httpMethod === "GET") {
     try {
-      const url = `https://api.themoviedb.org/3${path}?api_key=${TMDB_KEY}&language=en-US`;
+      const query = event.queryStringParameters || {};
+      const searchParams = new URLSearchParams({
+        api_key: TMDB_KEY,
+        language: "en-US",
+        ...query,
+      }).toString();
+
+      const url = `https://api.themoviedb.org/3${path}?${searchParams}`;
       const response = await axios.get(url);
       return {
         statusCode: 200,

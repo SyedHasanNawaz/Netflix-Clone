@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axios from "./axios";
 import "./ChatBot.css";
 
 const ChatBot = () => {
@@ -19,7 +19,7 @@ const ChatBot = () => {
     setInput("");
 
     try {
-      const res = await axios.post("/.netlify/functions/api/chatbot", {
+      const res = await axios.post("/chatbot", {
         model: "meta-llama/llama-3.3-70b-instruct:free",
         messages: updatedMessages,
       });
