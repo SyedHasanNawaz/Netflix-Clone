@@ -30,7 +30,11 @@ const ChatBot = () => {
       console.error("API Error:", err.response?.data || err.message);
       setMessages([
         ...updatedMessages,
-        { role: "assistant", content: "Error fetching response." },
+        {
+          role: "assistant",
+          content:
+            "Rate limit exceeded: 1 requests per minute. Please retry shortly...",
+        },
       ]);
     }
   };
